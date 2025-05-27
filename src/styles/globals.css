@@ -16,18 +16,6 @@
   }
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* For specific image containers */
-.image-container {
-  width: 100%;
-  max-width: 300px; /* Adjust as needed */
-  margin: 0 auto;
-}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
