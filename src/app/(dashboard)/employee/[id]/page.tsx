@@ -4,7 +4,23 @@ import { notFound } from 'next/navigation';
 import { useStore } from '@/lib/store';
 import { Tabs, Rating, Badge, Card } from '@/components/common';
 
-const OverviewTab = ({ employee }: { employee: any }) => (
+interface Employee {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string;
+  age: number;
+  address?: string;
+  bio?: string;
+  department: string;
+  rating: number;
+}
+
+interface TabContentProps {
+  employee: Employee;
+}
+
+const OverviewTab = ({ employee }: TabContentProps) => (
   <div className="space-y-4">
     <Card>
       <h3 className="font-bold mb-2">Personal Information</h3>
@@ -23,12 +39,12 @@ const OverviewTab = ({ employee }: { employee: any }) => (
   </div>
 );
 
-const ProjectsTab = ({ employee }: { employee: any }) => (
+const ProjectsTab = ({ employee }: TabContentProps) => (
   <Card>
     <h3 className="font-bold mb-4">Current Projects</h3>
     <div className="space-y-3">
-      {['Project A', 'Project B', 'Project C'].map((project, index) => (
-        <div key={index} className="border-b pb-2">
+      {['Project A', 'Project B', 'Project C'].map((project) => (
+        <div key={project} className="border-b pb-2">
           <h4 className="font-medium">{project}</h4>
           <p className="text-sm text-gray-600">Status: In Progress</p>
         </div>
@@ -37,7 +53,7 @@ const ProjectsTab = ({ employee }: { employee: any }) => (
   </Card>
 );
 
-const FeedbackTab = ({ employee }: { employee: any }) => (
+const FeedbackTab = ({ employee }: TabContentProps) => (
   <Card>
     <h3 className="font-bold mb-4">Performance Feedback</h3>
     <div className="space-y-4">
@@ -45,8 +61,8 @@ const FeedbackTab = ({ employee }: { employee: any }) => (
         { date: '2023-01-15', rating: 4, comment: 'Excellent work on the Q4 project' },
         { date: '2022-07-20', rating: 3.5, comment: 'Good progress, needs more initiative' },
         { date: '2022-01-10', rating: 3, comment: 'Meeting expectations' },
-      ].map((feedback, index) => (
-        <div key={index} className="border-b pb-3">
+      ].map((feedback) => (
+        <div key={feedback.date} className="border-b pb-3">
           <div className="flex justify-between items-center mb-1">
             <span className="text-sm text-gray-500">{feedback.date}</span>
             <Rating value={feedback.rating} />
@@ -59,8 +75,8 @@ const FeedbackTab = ({ employee }: { employee: any }) => (
 );
 
 export default function EmployeePage({ params }: { params: { id: string } }) {
-  const employee = useStore(state => 
-    state.employees.find(e => e.id === Number(params.id))
+  const employee = useStore((state) => 
+    state.employees.find((e) => e.id === Number(params.id))
   );
   
   if (!employee) return notFound();
