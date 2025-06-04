@@ -19,7 +19,12 @@ interface Employee {
 interface TabContentProps {
   employee: Employee;
 }
-
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+}
 const OverviewTab = ({ employee }: TabContentProps) => (
   <div className="space-y-4">
     <Card>
@@ -74,9 +79,9 @@ const FeedbackTab = ({ employee }: TabContentProps) => (
   </Card>
 );
 
-export default function EmployeePage({ params }: { params: { id: string } }) {
-  const employee = useStore((state) => 
-    state.employees.find((e) => e.id === Number(params.id))
+export default function EmployeePage({ params }: PageProps) {
+  const employee = useStore(state => 
+    state.employees.find(e => e.id === Number(params.id))
   );
   
   if (!employee) return notFound();
