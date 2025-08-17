@@ -1,6 +1,6 @@
 # HR Performance Dashboard - README
 
-Deployment link: https://684075bacbdb1b40f3a0dc75--hrdashboardsruth.netlify.app/
+Deployment link: https://hrdashboardsruth.netlify.app/
 
 https://github.com/user-attachments/assets/4324e43d-b8df-485b-a318-7b73e81df56d
 
@@ -147,4 +147,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 mail to - sruthivihitha_potluri@srmap.edu.in
 
-Project Link: https://684075bacbdb1b40f3a0dc75--hrdashboardsruth.netlify.app/
+Project Link: https://hrdashboardsruth.netlify.app/
